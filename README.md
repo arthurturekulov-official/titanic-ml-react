@@ -1,16 +1,64 @@
-# React + Vite
+# 🚢 Titanic Survival Predictor (Client-side ML + React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite)](https://vitejs.dev/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikit-learn)](https://scikit-learn.org/)
+[![Vercel](https://img.shields.io/badge/Deployment-Vercel-black?logo=vercel)](https://vercel.com/)
 
-Currently, two official plugins are available:
+Интерактивное веб-приложение для прогнозирования шансов выживания на легендарном лайнере «Титаник». 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Главная архитектурная особенность проекта — **Edge AI (Client-side Machine Learning)**. Обученная на Python модель машинного обучения скомпилирована напрямую в чистый JavaScript и исполняется на 100% в браузере пользователя, не требуя выделенного бэкенд-сервера.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌟 Ключевые особенности
 
-## Expanding the ESLint configuration
+* **🧠 ИИ в браузере:** Мгновенный расчет вероятностей без сетевых задержек и запросов к API.
+* **🚢 Интерактивная SVG-схема корабля:** Клик по палубам корабля автоматически выбирает соответствующий класс каюты (1 класс — Люкс, 2 класс — Средний, 3 класс — Эконом/Трюм).
+* **👤 Быстрые исторические пресеты:** Загрузка данных реальных/культурных пассажиров в один клик (Джек Доусон, Роуз Дьювз, Ребенок).
+* **🎨 Двухрежимная тема:** Поддержка **Dark / Light mode** с сохранением пользовательских предпочтений в `localStorage`.
+* **📱 Адаптивный UX:** Мобильная и десктопная сетка (Grid Layout) с анимированным прелоадером инициализации ИИ.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧱 Архитектурные слои (Tech Stack)
+
+| Слой | Технологии | Описание |
+| :--- | :--- | :--- |
+| **Data Science / ML** | Python, Pandas, Scikit-Learn | Очистка данных датасета Titanic, предобработка фичей и обучение `LogisticRegression`. |
+| **Model Compiler** | `m2cgen` | Трансляция обученной модели из Python в вектор математических коэффициентов на чистом JS. |
+| **Frontend UI** | React 18, Vite, CSS3, SVG | Интерактивный пользовательский интерфейс, логика состояний и адаптивная верстка. |
+| **Deployment & CI/CD** | Git, GitHub, Vercel | Бессерверная публикация статического приложения с автодеплоем при коммитах. |
+
+---
+
+## ⚙️ Как это работает под капотом
+
+1. **Входной вектор:** Данные формы преобразуются в числовой массив:  
+   `[pclass, sex, age, fare, sibsp, parch]`
+2. **Инференс модели:** Массив передается в скомпилированную функцию `score(input)` (`src/titanicModel.js`).
+3. **Сигмоида:** Логит модели переводится в диапазон вероятности $[0, 1]$ через формулу:  
+   $$P = \frac{1}{1 + e^{-logit}}$$
+4. **Рендер:** Результат выводится в процентах с цветовой индикацией уровня риска.
+
+---
+
+## 📁 Структура проекта
+
+```text
+titanic-app/
+├── notebook/
+│   └── train_model.ipynb    # Jupyter Notebook с обучением модели на Python
+├── src/
+│   ├── assets/              # Иконки и статические ресурсы
+│   ├── components/
+│   │   ├── Loader.jsx       # Анимированный прелоадер корабля
+│   │   ├── Loader.css
+│   │   ├── TitanicShip.jsx  # Интерактивная SVG-схема палуб
+│   │   └── TitanicShip.css
+│   ├── titanicModel.js      # Скомпилированная ML-модель (JS)
+│   ├── App.jsx              # Главный компонент приложения
+│   ├── App.css              # Адаптивные темы и Grid-сетка
+│   └── main.jsx
+├── package.json
+└── README.md
