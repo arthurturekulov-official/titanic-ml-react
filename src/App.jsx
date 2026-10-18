@@ -107,90 +107,98 @@ function App() {
         </button>
       </div>
 
-      <TitanicShip pclass={formData.pclass} onSelectClass={handleClassSelect} />
+      <div className="main-content-grid">
+        {/* Левая колонка на ПК: Корабль и Пресеты */}
+        <div className="left-column">
+          <TitanicShip pclass={formData.pclass} onSelectClass={handleClassSelect} />
 
-      <div className="presets-container">
-        <span className="presets-label">Быстрые пресеты:</span>
-        <div className="presets-grid">
-          <button type="button" className="preset-btn" onClick={() => loadPreset('jack')}>
-            👤 Джек (3 класс)
-          </button>
-          <button type="button" className="preset-btn" onClick={() => loadPreset('rose')}>
-            🌹 Роуз (1 класс)
-          </button>
-          <button type="button" className="preset-btn" onClick={() => loadPreset('child')}>
-            👶 Ребенок
-          </button>
+          <div className="presets-container">
+            <span className="presets-label">Быстрые пресеты:</span>
+            <div className="presets-grid">
+              <button type="button" className="preset-btn" onClick={() => loadPreset('jack')}>
+                👤 Джек (3 класс)
+              </button>
+              <button type="button" className="preset-btn" onClick={() => loadPreset('rose')}>
+                🌹 Роуз (1 класс)
+              </button>
+              <button type="button" className="preset-btn" onClick={() => loadPreset('child')}>
+                👶 Ребенок
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Правая колонка на ПК: Форма ввода и Результат */}
+        <div className="right-column">
+          <form onSubmit={handleSubmit} className="form">
+            <div className="input-group">
+              <label>Класс каюты</label>
+              <select name="pclass" value={formData.pclass} onChange={handleChange}>
+                <option value="1">1 класс (Люкс на верхних палубах)</option>
+                <option value="2">2 класс (Средние палубы)</option>
+                <option value="3">3 класс (Эконом и трюм)</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label>Пол</label>
+              <div className="gender-btn-group">
+                <button 
+                  type="button"
+                  className={`gender-btn ${formData.sex === '0' ? 'active' : ''}`}
+                  onClick={() => handleSexChange('0')}
+                >
+                  <img src={maleIcon} alt="Male" className="gender-icon" />
+                  Мужской
+                </button>
+                <button 
+                  type="button"
+                  className={`gender-btn ${formData.sex === '1' ? 'active' : ''}`}
+                  onClick={() => handleSexChange('1')}
+                >
+                  <img src={femaleIcon} alt="Female" className="gender-icon" />
+                  Женский
+                </button>
+              </div>
+            </div>
+
+            <div className="input-group">
+              <label>Возраст (лет)</label>
+              <input type="number" name="age" value={formData.age} onChange={handleChange} />
+            </div>
+
+            <div className="input-group">
+              <label>Цена билета ($)</label>
+              <input type="number" name="fare" value={formData.fare} onChange={handleChange} />
+            </div>
+
+            <div className="input-group">
+              <label>Братья / Сестры / Супруг(а) на борту</label>
+              <input type="number" name="sibsp" value={formData.sibsp} onChange={handleChange} />
+            </div>
+
+            <div className="input-group">
+              <label>Родители / Дети на борту</label>
+              <input type="number" name="parch" value={formData.parch} onChange={handleChange} />
+            </div>
+
+            <button type="submit" className="submit-btn" disabled={isLoading}>
+              {isLoading ? 'Вычисление...' : 'Рассчитать вероятность'}
+            </button>
+          </form>
+
+          {isLoading && <Loader text="Модель ИИ рассчитывает шансы..." />}
+
+          {!isLoading && result !== null && (
+            <div className="result-card">
+              <div className="result-title">Шанс выжить:</div>
+              <div className={`result-value ${result > 50 ? 'high-chance' : 'low-chance'}`}>
+                {result}%
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      <form onSubmit={handleSubmit} className="form">
-        <div className="input-group">
-          <label>Класс каюты</label>
-          <select name="pclass" value={formData.pclass} onChange={handleChange}>
-            <option value="1">1 класс (Люкс на верхних палубах)</option>
-            <option value="2">2 класс (Средние палубы)</option>
-            <option value="3">3 класс (Эконом и трюм)</option>
-          </select>
-        </div>
-
-        <div className="input-group">
-          <label>Пол</label>
-          <div className="gender-btn-group">
-            <button 
-              type="button"
-              className={`gender-btn ${formData.sex === '0' ? 'active' : ''}`}
-              onClick={() => handleSexChange('0')}
-            >
-              <img src={maleIcon} alt="Male" className="gender-icon" />
-              Мужской
-            </button>
-            <button 
-              type="button"
-              className={`gender-btn ${formData.sex === '1' ? 'active' : ''}`}
-              onClick={() => handleSexChange('1')}
-            >
-              <img src={femaleIcon} alt="Female" className="gender-icon" />
-              Женский
-            </button>
-          </div>
-        </div>
-
-        <div className="input-group">
-          <label>Возраст (лет)</label>
-          <input type="number" name="age" value={formData.age} onChange={handleChange} />
-        </div>
-
-        <div className="input-group">
-          <label>Цена билета ($)</label>
-          <input type="number" name="fare" value={formData.fare} onChange={handleChange} />
-        </div>
-
-        <div className="input-group">
-          <label>Братья / Сестры / Супруг(а) на борту</label>
-          <input type="number" name="sibsp" value={formData.sibsp} onChange={handleChange} />
-        </div>
-
-        <div className="input-group">
-          <label>Родители / Дети на борту</label>
-          <input type="number" name="parch" value={formData.parch} onChange={handleChange} />
-        </div>
-
-        <button type="submit" className="submit-btn" disabled={isLoading}>
-          {isLoading ? 'Вычисление...' : 'Рассчитать вероятность'}
-        </button>
-      </form>
-
-      {isLoading && <Loader text="Модель ИИ рассчитывает шансы..." />}
-
-      {!isLoading && result !== null && (
-        <div className="result-card">
-          <div className="result-title">Шанс выжить:</div>
-          <div className={`result-value ${result > 50 ? 'high-chance' : 'low-chance'}`}>
-            {result}%
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -9,6 +9,7 @@
   border-radius: 16px;
   backdrop-filter: blur(10px);
   animation: fadeIn 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .loader-content {
@@ -44,6 +45,7 @@
   background: rgba(56, 189, 248, 0.4);
   border-radius: 10px;
   z-index: 1;
+  transition: background 0.3s ease;
 }
 
 .wave-1 {
@@ -67,6 +69,7 @@
   background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, transparent 70%);
   animation: pulseGlow 1.5s ease-in-out infinite;
   pointer-events: none;
+  transition: background 0.3s ease;
 }
 
 /* Текст с эффектом мерцания */
@@ -76,6 +79,29 @@
   color: #38bdf8;
   letter-spacing: 0.5px;
   animation: textBlink 1.5s ease-in-out infinite;
+  transition: color 0.3s ease;
+}
+
+/* --- СВЕТЛАЯ ТЕМА ДЛЯ ЛОАДЕРА --- */
+.app-container.light-theme .loader-container {
+  background: rgba(241, 245, 249, 0.95);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.app-container.light-theme .loader-text {
+  color: #0284c7;
+}
+
+.app-container.light-theme .wave {
+  background: rgba(2, 132, 199, 0.4);
+}
+
+.app-container.light-theme .wave-2 {
+  background: rgba(2, 132, 199, 0.2);
+}
+
+.app-container.light-theme .ai-pulse {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.3) 0%, transparent 70%);
 }
 
 /* Анимации */

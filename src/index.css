@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
   box-sizing: border-box;
@@ -15,25 +15,32 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
   width: 100%;
-  max-width: 480px;
+  max-width: 480px; /* По умолчанию для телефонов */
   background: rgba(28, 37, 65, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 32px;
+  border-radius: 24px;
+  padding: 28px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: max-width 0.3s ease, background 0.3s ease;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 24px;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
   letter-spacing: -0.5px;
   color: #ffffff;
 }
@@ -51,7 +58,7 @@ body {
 }
 
 label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: #94a3b8;
 }
@@ -61,9 +68,9 @@ select, input {
   padding: 12px 14px;
   background: rgba(11, 19, 43, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   transition: all 0.2s ease;
 }
 
@@ -73,67 +80,21 @@ select:focus, input:focus {
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.1s ease, opacity 0.2s ease;
-  margin-top: 8px;
-}
-
-.submit-btn:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-.submit-btn:active {
-  transform: translateY(0);
-}
-
-.result-card {
-  margin-top: 24px;
-  padding: 20px;
-  background: rgba(11, 19, 43, 0.85);
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-.result-title {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 6px;
-}
-
-.result-value {
-  font-size: 32px;
-  font-weight: 800;
-}
-
-/* --- Стили для кнопок выбора пола --- */
-
 .gender-btn-group {
   display: flex;
-  gap: 12px; /* Расстояние между кнопками */
+  gap: 12px;
 }
 
 .gender-btn {
-  flex: 1; /* Кнопки делят место поровну */
+  flex: 1;
   display: flex;
-  align-items: center; /* Выравнивание иконки и текста по вертикали */
-  justify-content: center; /* Центрирование контента внутри */
-  gap: 8px; /* Расстояние между иконкой и текстом */
-  padding: 10px 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
   background: rgba(11, 19, 43, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   color: #94a3b8;
   font-size: 14px;
   font-weight: 500;
@@ -147,32 +108,15 @@ select:focus, input:focus {
 }
 
 .gender-btn.active {
-  background: rgba(56, 189, 248, 0.15); 
-  border-color: #38bdf8; 
-  color: #ffffff; 
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #ffffff;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .gender-icon {
-  width: 18px; 
-  height: 18px;
-}
-
-.gender-btn.active .gender-icon {
-  opacity: 1;
-}
-
-.high-chance {
-  color: #4ade80; 
-}
-
-.low-chance {
-  color: #f87171; 
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  width: 20px;
+  height: 20px;
 }
 
 .presets-container {
@@ -180,7 +124,7 @@ select:focus, input:focus {
 }
 
 .presets-label {
-  font-size: 13px;
+  font-size: 14px;
   color: #94a3b8;
   display: block;
   margin-bottom: 8px;
@@ -196,10 +140,10 @@ select:focus, input:focus {
 .preset-btn {
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.3);
-  border-radius: 8px;
+  border-radius: 10px;
   color: #38bdf8;
-  padding: 6px 12px;
-  font-size: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -212,7 +156,119 @@ select:focus, input:focus {
   transform: translateY(-1px);
 }
 
-/* Плавное появление всего интерфейса после загрузки */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.2s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.result-card {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(11, 19, 43, 0.85);
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.result-title {
+  font-size: 15px;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.result-value {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.high-chance { color: #4ade80; }
+.low-chance { color: #f87171; }
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+/* --- СВЕТЛАЯ ТЕМА --- */
+body.light-mode {
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  color: #102a43;
+}
+
+.app-container.light-theme {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.app-container.light-theme .title { color: #0f172a; }
+.app-container.light-theme label,
+.app-container.light-theme .presets-label { color: #64748b; }
+
+.app-container.light-theme select,
+.app-container.light-theme input {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #0f172a;
+}
+
+.app-container.light-theme .gender-btn {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #64748b;
+}
+
+.app-container.light-theme .preset-btn {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  color: #0284c7;
+}
+
+.app-container.light-theme .result-card {
+  background: rgba(241, 245, 249, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* --- ДЕЛЕНИЕ НА 2 КОЛОНКИ ДЛЯ ДЕСКТОПОВ (ПК) --- */
+@media (min-width: 850px) {
+  .app-container {
+    max-width: 920px; /* Широкая карточка на ПК */
+    padding: 36px;
+  }
+
+  .main-content-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Слева корабль, справа форма */
+    gap: 32px;
+    align-items: start;
+  }
+}
+
 .fade-in-content {
   animation: fadeInApp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -228,117 +284,4 @@ select:focus, input:focus {
     transform: translateY(0);
     filter: blur(0);
   }
-}
-
-/* Стили для светлой темы всего документа */
-body.light-mode {
-  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
-  color: #102a43;
-}
-
-/* Стили карточки приложения в светлой теме */
-.app-container.light-theme {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #0f172a;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-}
-
-.app-container.light-theme .title {
-  color: #0f172a;
-}
-
-.app-container.light-theme label,
-.app-container.light-theme .presets-label,
-.app-container.light-theme .ship-deck-label,
-.app-container.light-theme .ship-hint {
-  color: #64748b;
-}
-
-.app-container.light-theme select,
-.app-container.light-theme input {
-  background: rgba(241, 245, 249, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #0f172a;
-}
-
-.app-container.light-theme select:focus,
-.app-container.light-theme input:focus {
-  border-color: #0284c7;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-}
-
-.app-container.light-theme .gender-btn {
-  background: rgba(241, 245, 249, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #64748b;
-}
-
-.app-container.light-theme .gender-btn:hover {
-  border-color: #0284c7;
-  color: #0f172a;
-}
-
-.app-container.light-theme .gender-btn.active {
-  background: rgba(2, 132, 199, 0.1);
-  border-color: #0284c7;
-  color: #0284c7;
-  box-shadow: 0 0 10px rgba(2, 132, 199, 0.15);
-}
-
-.app-container.light-theme .preset-btn {
-  background: rgba(2, 132, 199, 0.08);
-  border: 1px solid rgba(2, 132, 199, 0.2);
-  color: #0284c7;
-}
-
-.app-container.light-theme .preset-btn:hover {
-  background: rgba(2, 132, 199, 0.15);
-  border-color: #0284c7;
-  color: #0369a1;
-}
-
-.app-container.light-theme .result-card {
-  background: rgba(241, 245, 249, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.app-container.light-theme .ship-container {
-  background: rgba(241, 245, 249, 0.7);
-  border: 1px solid rgba(2, 132, 199, 0.2);
-}
-
-/* Кнопка переключения темы */
-.theme-toggle-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.2s ease;
-}
-
-.app-container.light-theme .theme-toggle-btn {
-  border-color: rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.theme-toggle-btn:hover {
-  transform: scale(1.05);
-}
-
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.header-row .title {
-  margin-bottom: 0;
 }
