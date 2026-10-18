@@ -8,6 +8,8 @@ import femaleIcon from './assets/femenine.png';
 
 function App() {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+  
   const [formData, setFormData] = useState({
     pclass: '3',
     sex: '0',
@@ -27,6 +29,19 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,15 +92,20 @@ function App() {
 
   if (isInitialLoading) {
     return (
-      <div className="app-container" style={{ textAlign: 'center', padding: '50px 20px' }}>
+      <div className={`app-container ${theme === 'light' ? 'light-theme' : ''}`} style={{ textAlign: 'center', padding: '50px 20px' }}>
         <Loader text="Загрузка системы и инициализация ИИ-модели..." />
       </div>
     );
   }
 
   return (
-    <div className="app-container fade-in-content">
-      <h2 className="title">🧊 Твой шанс на Титанике</h2>
+    <div className={`app-container fade-in-content ${theme === 'light' ? 'light-theme' : ''}`}>
+      <div className="header-row">
+        <h2 className="title">🧊 Твой шанс на Титанике</h2>
+        <button type="button" className="theme-toggle-btn" onClick={toggleTheme} title="Переключить тему">
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </div>
 
       <TitanicShip pclass={formData.pclass} onSelectClass={handleClassSelect} />
 

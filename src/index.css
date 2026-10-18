@@ -229,3 +229,116 @@ select:focus, input:focus {
     filter: blur(0);
   }
 }
+
+/* Стили для светлой темы всего документа */
+body.light-mode {
+  background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  color: #102a43;
+}
+
+/* Стили карточки приложения в светлой теме */
+.app-container.light-theme {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.app-container.light-theme .title {
+  color: #0f172a;
+}
+
+.app-container.light-theme label,
+.app-container.light-theme .presets-label,
+.app-container.light-theme .ship-deck-label,
+.app-container.light-theme .ship-hint {
+  color: #64748b;
+}
+
+.app-container.light-theme select,
+.app-container.light-theme input {
+  background: rgba(241, 245, 249, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #0f172a;
+}
+
+.app-container.light-theme select:focus,
+.app-container.light-theme input:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.app-container.light-theme .gender-btn {
+  background: rgba(241, 245, 249, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #64748b;
+}
+
+.app-container.light-theme .gender-btn:hover {
+  border-color: #0284c7;
+  color: #0f172a;
+}
+
+.app-container.light-theme .gender-btn.active {
+  background: rgba(2, 132, 199, 0.1);
+  border-color: #0284c7;
+  color: #0284c7;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.15);
+}
+
+.app-container.light-theme .preset-btn {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  color: #0284c7;
+}
+
+.app-container.light-theme .preset-btn:hover {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: #0284c7;
+  color: #0369a1;
+}
+
+.app-container.light-theme .result-card {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.app-container.light-theme .ship-container {
+  background: rgba(241, 245, 249, 0.7);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+/* Кнопка переключения темы */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.app-container.light-theme .theme-toggle-btn {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.header-row .title {
+  margin-bottom: 0;
+}
